@@ -40,6 +40,7 @@ async def fetch_company_details(url: str) -> dict:
             command_executor=SELENIUM_REMOTE_URL,
             options=options
         )
+        driver.set_page_load_timeout(30)
         driver.get(url)
         wait = WebDriverWait(driver, 15)
         wait.until(EC.visibility_of_element_located(
@@ -82,6 +83,7 @@ async def fetch_company_data(query: str) -> list[dict]:
             command_executor=SELENIUM_REMOTE_URL,
             options=options
         )
+        driver.set_page_load_timeout(30)
         driver.get(url)
         input_field = WebDriverWait(driver, 15).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, "#MainContent_txtEntityName")))
